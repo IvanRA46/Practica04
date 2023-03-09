@@ -80,6 +80,11 @@ public class Principal
         jLabel5.setText("Moto:");
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,31 +159,25 @@ public class Principal
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        boolean encontrar = false;
-                    int e =0;
-                    if (gp[e] == null  && gp[e+1] == null)  {
-                        JOptionPane.showMessageDialog(null,  "Memoria llena", "Error", JOptionPane.ERROR_MESSAGE);   
-                    } else {
-                        gp[e].setNumero(Integer.parseInt(txtNumero.getText()));
-                        for (Gp actual : gp) {
-                            if(actual == null){
-                                encontrar = false;
-                            } else if (actual.getNumero() == gp[e].getNumero()) {
-                                txtPiloto.setText(gp[e].getPiloto());
-                                txtMoto.setText(gp[e].getMoto());
-                                txtCategoria.setText(Integer.toString(gp[e].getCategoria()));
-                                encontrar = true;
-                                break;
-                            }
-                        }
-                        if(!encontrar){
-                            System.out.println("No existe");
-                        }
-
-                    }
+        for(int e=0; e<gp.length -1;e++){
+            if(gp[e] == null && gp[e+1] == null){
+                break;
+            }
+            else if(txtPiloto.getText().equals(gp[e].getPiloto())){
+                txtMoto.setText(gp[e].getMoto());
+                txtCategoria.setText(Integer.toString(gp[e].getCategoria()));
+                txtNumero.setText(Integer.toString(gp[e].getNumero()));
+            }
+        }
+                        
+                    
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+      txtCategoria.setText("");
+      txtPiloto.setText("");
+      txtMoto.setText("");
+      txtNumero.setText("");
       
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
@@ -195,6 +194,18 @@ public class Principal
         }
         
     }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+               for(int e=0; e<gp.length -1;e++){
+            if(gp[e] == null && gp[e+1] == null){
+                break;
+            }
+            else if(txtPiloto.getText().equals(gp[e].getPiloto())){
+                
+            }
+        }
+             
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
